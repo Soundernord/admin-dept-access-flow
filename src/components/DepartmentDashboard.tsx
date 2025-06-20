@@ -10,13 +10,13 @@ import { useAuth } from '@/contexts/AuthContext';
 const DepartmentDashboard = () => {
   const { user } = useAuth();
 
-  // Mock account data based on department
+  // Mock account data based on department with INR currency
   const getAccountData = (department: string) => {
     const budgets = {
-      'Science': { total: 250000, used: 162500, remaining: 87500, proposals: 3 },
-      'Arts': { total: 180000, used: 117000, remaining: 63000, proposals: 2 },
-      'Engineering': { total: 320000, used: 208000, remaining: 112000, proposals: 5 },
-      'Commerce': { total: 200000, used: 130000, remaining: 70000, proposals: 4 },
+      'Science': { total: 2500000, used: 1625000, remaining: 875000, proposals: 3 },
+      'Arts': { total: 1800000, used: 1170000, remaining: 630000, proposals: 2 },
+      'Engineering': { total: 3200000, used: 2080000, remaining: 1120000, proposals: 5 },
+      'Commerce': { total: 2000000, used: 1300000, remaining: 700000, proposals: 4 },
     };
     return budgets[department as keyof typeof budgets] || budgets['Science'];
   };
@@ -43,7 +43,7 @@ const DepartmentDashboard = () => {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${accountData.total.toLocaleString()}</div>
+            <div className="text-2xl font-bold">₹{accountData.total.toLocaleString('en-IN')}</div>
           </CardContent>
         </Card>
 
@@ -53,7 +53,7 @@ const DepartmentDashboard = () => {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${accountData.used.toLocaleString()}</div>
+            <div className="text-2xl font-bold">₹{accountData.used.toLocaleString('en-IN')}</div>
             <p className="text-xs text-muted-foreground">
               {utilizationPercentage.toFixed(1)}% utilized
             </p>
@@ -66,7 +66,7 @@ const DepartmentDashboard = () => {
             <AlertCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${accountData.remaining.toLocaleString()}</div>
+            <div className="text-2xl font-bold">₹{accountData.remaining.toLocaleString('en-IN')}</div>
             <p className="text-xs text-muted-foreground">
               Available for use
             </p>
@@ -92,23 +92,23 @@ const DepartmentDashboard = () => {
         <CardContent className="space-y-4">
           <div>
             <div className="flex justify-between text-sm mb-2">
-              <span>Used: ${accountData.used.toLocaleString()}</span>
-              <span>Remaining: ${accountData.remaining.toLocaleString()}</span>
+              <span>Used: ₹{accountData.used.toLocaleString('en-IN')}</span>
+              <span>Remaining: ₹{accountData.remaining.toLocaleString('en-IN')}</span>
             </div>
             <Progress value={utilizationPercentage} className="h-2" />
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <div className="text-center p-4 bg-green-50 rounded-lg">
-              <div className="text-2xl font-bold text-green-600">${(accountData.used * 0.4).toLocaleString()}</div>
+              <div className="text-2xl font-bold text-green-600">₹{(accountData.used * 0.4).toLocaleString('en-IN')}</div>
               <div className="text-sm text-green-700">Equipment</div>
             </div>
             <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <div className="text-2xl font-bold text-blue-600">${(accountData.used * 0.35).toLocaleString()}</div>
+              <div className="text-2xl font-bold text-blue-600">₹{(accountData.used * 0.35).toLocaleString('en-IN')}</div>
               <div className="text-sm text-blue-700">Research</div>
             </div>
             <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <div className="text-2xl font-bold text-purple-600">${(accountData.used * 0.25).toLocaleString()}</div>
+              <div className="text-2xl font-bold text-purple-600">₹{(accountData.used * 0.25).toLocaleString('en-IN')}</div>
               <div className="text-sm text-purple-700">Operations</div>
             </div>
           </div>
@@ -152,15 +152,15 @@ const DepartmentDashboard = () => {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between border-b pb-1">
                     <span className="text-slate-600">Lab Equipment Purchase</span>
-                    <span className="font-medium text-red-600">-$15,000</span>
+                    <span className="font-medium text-red-600">-₹1,50,000</span>
                   </div>
                   <div className="flex justify-between border-b pb-1">
                     <span className="text-slate-600">Research Grant</span>
-                    <span className="font-medium text-green-600">+$25,000</span>
+                    <span className="font-medium text-green-600">+₹2,50,000</span>
                   </div>
                   <div className="flex justify-between border-b pb-1">
                     <span className="text-slate-600">Office Supplies</span>
-                    <span className="font-medium text-red-600">-$2,500</span>
+                    <span className="font-medium text-red-600">-₹25,000</span>
                   </div>
                 </div>
               </div>
