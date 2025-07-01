@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import LoginForm from '@/components/LoginForm';
 import Dashboard from '@/components/Dashboard';
 
@@ -12,9 +13,11 @@ const AppContent = () => {
 
 const Index = () => {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ThemeProvider>
   );
 };
 
