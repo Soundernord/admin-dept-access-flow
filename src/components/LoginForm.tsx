@@ -15,6 +15,10 @@ const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
 
+  const handleLoginTypeChange = (value: string) => {
+    setLoginType(value as UserType);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -60,7 +64,7 @@ const LoginForm = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="loginType">Login Type</Label>
-              <Select value={loginType} onValueChange={setLoginType}>
+              <Select value={loginType} onValueChange={handleLoginTypeChange}>
                 <SelectTrigger className="transition-all duration-200 hover:bg-accent">
                   <SelectValue placeholder="Select login type" />
                 </SelectTrigger>

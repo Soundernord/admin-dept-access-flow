@@ -20,6 +20,10 @@ const Dashboard = () => {
   const { theme, toggleTheme } = useTheme();
   const [activeNav, setActiveNav] = useState<NavigationItem>('dashboard');
 
+  const handleNavChange = (nav: string) => {
+    setActiveNav(nav as NavigationItem);
+  };
+
   const renderContent = () => {
     switch (activeNav) {
       case 'dashboard':
@@ -38,7 +42,7 @@ const Dashboard = () => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
-        <AppSidebar activeNav={activeNav} setActiveNav={setActiveNav} />
+        <AppSidebar activeNav={activeNav} setActiveNav={handleNavChange} />
         <main className="flex-1">
           <div className="p-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="flex items-center justify-between">
